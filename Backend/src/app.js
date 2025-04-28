@@ -16,15 +16,5 @@ app.use(cookieParser())
 
 import userRouter from "./routes/user.route.js"
 
-app.get("/test-db", async (req, res) => {
-    try {
-        const users = await User.find({});
-        res.json(users);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "DB error" });
-    }
-});
-
 app.use("/api/v1/users", userRouter)
 export {app}

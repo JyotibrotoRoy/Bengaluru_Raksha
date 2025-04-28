@@ -6,7 +6,6 @@ const ConnectionDB = async() => {
         const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}` , {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-      // Increase timeout for testing
             serverSelectionTimeoutMS: 30000,
         })
         
