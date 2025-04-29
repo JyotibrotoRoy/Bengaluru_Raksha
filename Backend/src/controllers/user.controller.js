@@ -1,6 +1,6 @@
 import { asyncHandler } from "../../../../backend project/src/utils/asyncHandler.js";
 import { ApiError } from "../../../../backend project/src/utils/apiError.js";
-import { User } from "../../../../backend project/src/models/user.models.js";
+import { User } from "../models/user.models.js"
 import { ApiResponse } from "../../../../backend project/src/utils/apiResponse.js";
 import jwt from "jsonwebtoken";
 
@@ -35,7 +35,6 @@ const registerUser = asyncHandler( async (req, res) => {
      if( existingUser ) {
         throw new ApiError(409, "User with email or username already exists")
     }
-    console.log(req.files)
 
     const user = await User.create({
         fullname,

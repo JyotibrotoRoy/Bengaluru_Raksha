@@ -1,1 +1,1 @@
-export const DB_NAME = "Public_Safety"
+export const DB_NAME ="Public_Safety"
