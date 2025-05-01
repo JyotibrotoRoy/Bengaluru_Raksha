@@ -1,11 +1,10 @@
 body {
     font-family:'Arial',monospace;
     background-color: #292929;
-    display: flex;
     height: 100%;
     margin: 0;
     flex-direction: column; 
-    justify-content: flex-end; 
+    justify-content: center; 
     min-height: 100vh;
 }
 .button-container {
@@ -13,15 +12,17 @@ body {
     display: flex;
     justify-content: center; 
     gap: 20px; 
-    margin-bottom: 30px;
-    justify-content: left;
-    margin-left: 2%;
+    margin-bottom: 0%;
+    background-color: #00000000;
+    margin-left: 0%;
+    align-items: center;
+    margin-left: 25%;
 }
 
 
 h{
     color:#ffffff;
-    margin-left: 5%;
+    margin-left: 10%;
     margin-right: 5%;
 }
 
@@ -40,22 +41,24 @@ input[type="text"] {
 .container1 {
         width: 100%;
         display: flex;
-        justify-content: left; 
+        justify-content: center; 
         gap: 20px; 
         margin-bottom: 0%;
         margin-top: 1%;
+        margin-left: 0%;
 }
 
 .container2 {
     width: 50%;
     height: 350px;
-    margin-left: 2%;
-    margin-bottom: 5%;
+    margin-left: 25%;
+    margin-bottom: 3%;
     margin-top: 1%;
     border-radius: 25px;
-    background-color: #00000069;
+    background-color: #00000048;
     border-radius: 50px;
     align-items: center;
+    justify-content: center;
     border: 1px solid #ffffff;
 }
 
@@ -66,7 +69,7 @@ input[type="text"] {
     border: none;
     color: #ffffff;
     border: 0px solid #ffffff;
-    border-radius: 25px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
     margin-left: 30%;
@@ -86,16 +89,16 @@ input[type="text"] {
     font-size: 20px;
     color: #ffffff;
     text-align: left;
-    margin-left: 3%;
+    margin-left: 10%;
     margin-top: 5%;
 }
 .road-safety{
-    font-size: 50px;
+    font-size: 30px;
     color: #ffffff;
-    text-align: left;
-    margin-left: 1%;
+    text-align: center;
     margin-top: 1%;
 }
+
 .sos-btn {
     width: 40%;
     padding: 30px 15px;

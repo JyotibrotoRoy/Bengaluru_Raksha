@@ -16,8 +16,10 @@ app.use(cookieParser())
 
 import userRouter from "./routes/user.route.js"
 import sosRouter from "./routes/sos.route.js"
+import vehicleRouter from "./routes/vehicle.route.js"
 
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/sos", sosRouter)
+app.use("/api/v1", vehicleRouter)
 
 export {app}
