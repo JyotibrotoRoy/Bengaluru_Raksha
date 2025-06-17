@@ -7,7 +7,6 @@
     <title>Homepage</title>
 </head>
 <body>
-    <script src="sosbtn.js"></script>
     <div class="container1"> 
         <h1 class="road-safety">Bangalore Raksha</h1>
     </div>
@@ -22,6 +21,19 @@
     <div class="button-container">
         <button type="button" id="sos-btn" class="sos-btn">SOS</button>
         <button type="button" id="kae-btn" class="kae-btn">Keep an eye on</button>
+        <a href="#" onclick="openProfile()" class="profile-icon">
+        <img src="up.png" alt="Profile Icon" style="width: 40px; height: 40px; border-radius: 50%;">
+  </a>
     </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="profile-section" id="profileSection">
+        <div class="profileHeader">
+            <h2>Profile</h2>
+            <span class="close-btn" id="closeBtn">&times;</span>
+        </div>
+        <p>Welcome</p>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <script src="sosbtn.js"></script>
 </body>
 </html>

@@ -156,3 +156,79 @@ input[type="text"] {
         width: 25%;
     }
 }
+
+.profile-section {
+  position: fixed;
+  top: 20%;
+  right: 5%;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+  display: none;
+  z-index: 1001;
+  width: 250px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.profile-section.active {
+  display: block;
+}
+
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#colseBtn {
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+}
+
+.profile-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.profile-icon img:hover {
+  transform: scale(1.1);
+}
+
+.logout-btn {
+  margin-top: 15px;
+  background-color: #DA0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Consolas', monospace;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #f82424;
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 1000;
+}
+
+.overlay.active {
+  display: block;
+}

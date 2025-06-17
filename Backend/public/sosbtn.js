@@ -91,3 +91,41 @@ function handleServerError(error) {
 function handleKAEClick() {
     window.location.href = 'homepage.html';
 }
+
+function openProfile() {
+    document.getElementById("profileSection").classList.add('active');
+    document.getElementById("overlay").classList.add('active')
+}
+document.getElementById('closeBtn').addEventListener('click', function() {
+    document.getElementById('profileSection').classList.remove('active');
+    document.getElementById('overlay').classList.remove('active');
+});
+
+document.getElementById('overlay').addEventListener('click', function() {
+    document.getElementById("profileSection").classList.remove('active');
+    document.getElementById("overlay").classList.remove('active');
+});
+
+async function logout() {
+  try {
+    const res = await fetch("http://localhost:8000/api/v1/users/logout", {
+      method: "POST",
+      credentials: "include"  
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    if (res.ok) {
+        alert(data.message || "Logged out successfully!");
+        localStorage.removeItem("accessToken");  
+        window.location.href = "/login";     
+    }
+    else{
+        alert(data.message || "Logged out failed!");
+    }
+  } catch (err) {
+    alert("Logout failed. Please try again.");
+    console.error(err);
+  }
+}

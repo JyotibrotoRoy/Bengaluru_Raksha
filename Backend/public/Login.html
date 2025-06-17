@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8">
+  <title>Register - Bengaluru Raksha</title>
+  <link rel="stylesheet" href="style.css"></head>
+<body>
+  <div class="container2">
+    <h2 class="rpt">Login</h2>
+    <form id="loginForm">
+      <h>Username or Email</h><br>
+      <input type="text" id="identifier" placeholder="Enter username or email" required><br>
+      <h>Password</h><br>
+      <input type="password" id="password" placeholder="Enter password" required><br>
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const identifier = form.identifier.value;
+      const password = form.password.value;
+
+      const res = await fetch("http://localhost:8000/api/v1/users/login", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: identifier,
+          email: identifier,
+          password
+        })
+      });
+
+      const data = await res.json();
+      alert(data.message);
+      if (res.ok) {
+        // Save token or redirect
+        localStorage.setItem("accessToken", data.data.accessToken);
+        window.location.href = "homepage.html";
+      }
+    });
+  </script>
+</body>
+</html>

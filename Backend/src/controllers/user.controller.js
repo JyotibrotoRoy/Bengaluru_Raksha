@@ -80,7 +80,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: false,
+        sameSite: "Lax"
     }
 
     return res
@@ -99,7 +100,12 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
-    User.findByIdAndUpdate(
+
+    if (!req.user || !req.user._id) {
+    throw new ApiError(401, "Unauthorized - no user found");
+    }
+
+    await User.findByIdAndUpdate(
         req.user._id,
         {
             $set: {
@@ -113,7 +119,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: false
     }
 
     return res
