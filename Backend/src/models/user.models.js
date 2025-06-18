@@ -29,6 +29,35 @@ const userSchema = new Schema(
             type: String,
             required: [true, "Password is required"]
         },
+        phoneNumber: {
+            type: String,
+            required: true,
+            trim: true,
+            validate: {
+                validator: function(v) {
+                    return /^\+[1-9]\d{1,14}$/.test(v);
+                },
+                message: 'Please enter a valid phone number with country code (e.g., +919876543210)'
+            }
+        },
+        emergencyContacts: [{
+            name: {
+            type: String,
+            required: true,
+            trim: true
+            },
+            phoneNumber: {
+            type: String,
+            required: true,
+            trim: true,
+            validate: {
+                validator: function (v) {
+                return /^\+[1-9]\d{1,14}$/.test(v);
+                },
+                message: 'Please enter a valid emergency contact phone number with country code'
+            }
+        }}],
+
         refreshToken: {
             type: String
         }

@@ -20,13 +20,24 @@ const generateAccessandRefreshToken = async (userId) => {
 }
 
 const registerUser = asyncHandler( async (req, res) => {
-    const {username, email, fullname, password} = req.body
+    const {username, email, fullname, password,phoneNumber, emergencyContacts} = req.body
 
     if (
         [username, email, fullname, password].some((field) => field?.trim() ==="")
     ) {
         throw new ApiError(400, "all fields are required")
     }
+
+    if (!emergencyContacts || !Array.isArray(emergencyContacts) || emergencyContacts.length === 0) {
+        throw new ApiError(400, "At least one emergency contact is required")
+    }
+
+    for (const contact of emergencyContacts) {
+        if (!contact.name || !contact.phoneNumber) {
+            throw new ApiError(400, "Emergency contact must have name, phone number")
+        }
+    }
+
     console.log(username, email, password, fullname)
     const existingUser = await User.findOne({
         $or: [{ username }, { email }]
@@ -40,7 +51,13 @@ const registerUser = asyncHandler( async (req, res) => {
         fullname,
         username: username.toLowerCase(),
         email,
-        password
+        password,
+        phoneNumber,
+        emergencyContacts: emergencyContacts.map((contact, index) => ({
+            ...contact,
+            isPrimary: index === 0,
+            verified: false
+        }))
     })
 
     const createdUser = await User.findById(user._id).select("-password -refreshToken")
@@ -50,8 +67,20 @@ const registerUser = asyncHandler( async (req, res) => {
     }
 
     return res.status(201).json(
-        new ApiResponse(200, createdUser, "User registered successfully")
-    )
+        new ApiResponse(
+            200,
+        {
+        user: createdUser,
+        verificationRequired: true,
+        message: "User registered successfully. To enable SOS alerts, emergency contact numbers must be verified in Twilio.",
+        verificationInstructions: {
+            step1: "Ask your emergency contacts to visit: https://console.twilio.com/us1/develop/phone-numbers/verified",
+            step2: "Click 'Add a Verified Caller ID' and enter their phone number",
+            step3: "Complete verification via the code sent to their number",
+            note: "This is a one-time process required due to Twilio trial account limits. Once verified, SOS SMS will be delivered successfully."
+        }
+        },
+        "User registered successfully"));
 })
 
 const loginUser = asyncHandler(async (req, res) => {

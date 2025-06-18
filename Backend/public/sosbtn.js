@@ -30,6 +30,7 @@ function handleLocationError(error) {
 function sendLocationToServer(latitude, longitude) {
     fetch('http://localhost:8000/api/v1/sos/send-sos', {
         method: 'POST',
+        credentials: 'include', 
         headers: {
             'Content-Type': 'application/json'
         },
