@@ -28,12 +28,13 @@ function handleLocationError(error) {
 }
 
 function sendLocationToServer(latitude, longitude) {
+    const token = localStorage.getItem("token")
     fetch('https://bengaluru-raksha.onrender.com/api/v1/sos/send-sos', {
         method: 'POST',
         credentials: 'include', 
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${yourToken}`
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ latitude, longitude })
     })
