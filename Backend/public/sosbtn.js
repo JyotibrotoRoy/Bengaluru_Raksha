@@ -39,6 +39,11 @@ function sendLocationToServer(latitude, longitude) {
         body: JSON.stringify({ latitude, longitude })
     })
     .then(response => response.json())
+    .then(data => {
+    if (data?.data?.accessToken) {
+        localStorage.setItem("token", data.data.accessToken);
+      }
+})
     .then(handleServerSuccess)
     .catch(handleServerError);
 }
