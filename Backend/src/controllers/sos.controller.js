@@ -1,7 +1,7 @@
 import twilio from "twilio";
-import { ApiError } from "../../../../backend project/src/utils/apiError.js";
-import { ApiResponse } from "../../../../backend project/src/utils/apiResponse.js";
-import { asyncHandler } from "../../../../backend project/src/utils/asyncHandler.js";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.models.js"
 
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);

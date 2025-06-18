@@ -1,7 +1,7 @@
-import { asyncHandler } from "../../../../backend project/src/utils/asyncHandler.js";
-import { ApiError } from "../../../../backend project/src/utils/apiError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "utils/apiError.js";
 import { User } from "../models/user.models.js"
-import { ApiResponse } from "../../../../backend project/src/utils/apiResponse.js";
+import { ApiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
 
 const generateAccessandRefreshToken = async (userId) => {

@@ -1,7 +1,7 @@
 import { Driver } from "../models/vehicle.models.js"
-import { asyncHandler } from "../../../../backend project/src/utils/asyncHandler.js"
-import { ApiError } from "../../../../backend project/src/utils/apiError.js"
-import { ApiResponse } from "../../../../backend project/src/utils/apiResponse.js"
+import { asyncHandler } from "../utils/asyncHandler.js"
+import { ApiError } from "../utils/apiError.js"
+import { ApiResponse } from "../utils/apiResponse.js"
 
 const rateDriver = asyncHandler(async(req, res) => {
     const { vehicleNumber, stars, review} = req.body
