@@ -1,41 +1,3 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     const sosButton = document.getElementById('sos-btn');
-//     const kaeButton = document.getElementById('kae-btn');
-//     sosButton.addEventListener('click', function() {
-//         if (navigator.geolocation) {
-//             navigator.geolocation.getCurrentPosition(function(position) {
-//                 const latitude = position.coords.latitude;
-//                 const longitude = position.coords.longitude;
-//                 alert(`Your location is:\nLatitude: ${latitude}\nLongitude: ${longitude}`);
-//                 fetch('http://localhost:8000/api/v1/sos/send-sos', {
-//                     method: 'POST',
-//                     headers: {
-//                         'Content-Type': 'application/json'
-//                     },
-//                     body: JSON.stringify({ latitude, longitude })
-//                 })
-//                 .then(response => response.json())
-//                 .then(data => {
-//                     alert('SOS sent successfully!');
-//                     console.log('Server Response:', data);
-//                 })
-//                 .catch(error => {
-//                     alert('Failed to send SOS: ' + error.message);
-//                     console.error('Error:', error);
-//                 });
-
-//             }, function(error) {
-//                 alert('Error getting location: ' + error.message);
-//             });
-//         } else {
-//             alert('Geolocation is not supported by this browser.');
-//         }
-//     });
-//     kaeButton.addEventListener('click', function() {
-//         window.location.href = 'homepage.html';
-//     });
-// });
-
 document.addEventListener('DOMContentLoaded', function() {
     const sosButton = document.getElementById('sos-btn');
     const kaeButton = document.getElementById('kae-btn');
@@ -129,3 +91,91 @@ async function logout() {
     console.error(err);
   }
 }
+
+document.querySelectorAll(".star").forEach(star => {
+  star.addEventListener("click", () => {
+    const rating = parseInt(star.getAttribute("data-value"));
+    document.getElementById("rating").value = rating;
+
+    
+    document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
+    for (let i = 0; i < rating; i++) {
+      document.querySelectorAll(".star")[i].classList.add("selected");
+    }
+  });
+});
+
+document.getElementById("reportform").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const vehicleNumber = document.getElementById("vno").value.trim();
+  const review = document.getElementById("rrep").value.trim();
+  const stars = parseInt(document.getElementById("rating").value);
+
+  if (!vehicleNumber || !stars) {
+    alert("Please enter a vehicle number and select a rating.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:8000/api/v1/rate-driver", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ vehicleNumber, stars, review })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Review submitted successfully!");
+      document.getElementById("reportform").reset();
+      document.getElementById("rating").value = "0";
+      document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
+    } else {
+      alert(data.message || "Failed to submit rating.");
+    }
+  } catch (err) {
+    alert("Error submitting rating.");
+    console.error(err);
+  }
+});
+
+
+// get vehicle review $$$
+
+document.getElementById("searchform").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const vehicleNumber = document.getElementById("searchvno").value.trim();
+
+  if (!vehicleNumber) {
+    alert("Please enter a vehicle number to search.");
+    return;
+  }
+
+  try {
+    const res = await fetch(`http://localhost:8000/api/v1/driver/${vehicleNumber}`);
+    const data = await res.json();
+
+    if (res.ok) {
+      const d = data.data;
+      const review = d.latestReview?.review || "No review yet";
+      const stars = d.latestReview?.stars || "-";
+
+      document.getElementById("driverDetails").innerHTML = `
+        <p><strong>Vehicle Number:</strong> ${d.vehicleNumber}</p>
+        <p><strong>Average Rating:</strong> ${d.averageRating} ⭐</p>
+        <p><strong>Total Ratings:</strong> ${d.totalRatings}</p>
+        <p><strong>Latest Review:</strong> ${review} (${stars} ⭐)</p>
+      `;
+    } else {
+      alert(data.message || "Driver not found.");
+      document.getElementById("driverDetails").innerHTML = "";
+    }
+  } catch (err) {
+    alert("Error fetching driver details.");
+    console.error(err);
+  }
+});

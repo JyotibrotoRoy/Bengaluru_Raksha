@@ -8,19 +8,31 @@
 </head>
 <body>
     <div class="container1"> 
-        <h1 class="road-safety">Bangalore Raksha</h1>
+        <h1 class="road-safety">Bengaluru Raksha</h1>
     </div>
     <div class="container2">
         <h2 class="rpt">Report Details:</h2>
         <form id="reportform">
-            <h>Vehicle Number   </h><input type="text" id="vno" placeholder="Write the Vehicle Number here" required><br>
-            <h>Reason of Report</h><input type="text" id="rrep" placeholder="Write the detailed report here" required>
+            <h>Vehicle Number   </h>
+            <input type="text" id="vno" placeholder="Write the Vehicle Number here" required><br>
+            <h>Reason of Report</h>
+            <input type="text" id="rrep" placeholder="Write the detailed report here" required>
+
+             <h>Rate the Driver</h><br>
+            <div class="star-rating" id="starContainer">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <input type="hidden" id="rating" value="0"><br>
+
             <button type="submit" id="submit-btn" class="submit-btn">Submit</button>
         </form>
     </div>
     <div class="button-container">
-        <button type="button" id="sos-btn" class="sos-btn">SOS</button>
-        <button type="button" id="kae-btn" class="kae-btn">Keep an eye on</button>
+        <button type="button" id="sos-btn" class="sos-btn">SOS</button> 
         <a href="#" onclick="openProfile()" class="profile-icon">
         <img src="up.png" alt="Profile Icon" style="width: 40px; height: 40px; border-radius: 50%;">
   </a>
@@ -34,6 +46,19 @@
         <p>Welcome</p>
         <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
+
+<hr style="border: 0; height: 1px; background-color: #ffffff22; margin: 40px 0;">
+
+<div class="search-driver-section">
+  <h2 class="rpt">Search Driver Reviews:</h2>
+  <form id="searchform">
+    <input type="text" id="searchvno" class="input-search" placeholder="Enter vehicle number" required>
+    <button type="submit" class="submit-btn">Search</button>
+  </form>
+
+  <div id="driverDetails" class="search-results"></div>
+</div>
+
     <script src="sosbtn.js"></script>
 </body>
 </html>
