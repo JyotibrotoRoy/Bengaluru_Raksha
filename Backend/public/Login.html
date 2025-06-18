@@ -24,7 +24,7 @@
       const identifier = form.identifier.value;
       const password = form.password.value;
 
-      const res = await fetch("http://localhost:8000/api/v1/users/login", {
+      const res = await fetch("https://bengaluru-raksha.onrender.com/api/v1/users/login", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

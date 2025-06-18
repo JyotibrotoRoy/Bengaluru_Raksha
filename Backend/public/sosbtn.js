@@ -28,7 +28,7 @@ function handleLocationError(error) {
 }
 
 function sendLocationToServer(latitude, longitude) {
-    fetch('http://localhost:8000/api/v1/sos/send-sos', {
+    fetch('https://bengaluru-raksha.onrender.com/api/v1/sos/send-sos', {
         method: 'POST',
         credentials: 'include', 
         headers: {
@@ -71,7 +71,7 @@ document.getElementById('overlay').addEventListener('click', function() {
 
 async function logout() {
   try {
-    const res = await fetch("http://localhost:8000/api/v1/users/logout", {
+    const res = await fetch("https://bengaluru-raksha.onrender.com/api/v1/users/logout", {
       method: "POST",
       credentials: "include"  
     });
@@ -119,7 +119,7 @@ document.getElementById("reportform").addEventListener("submit", async function 
   }
 
   try {
-    const res = await fetch("http://localhost:8000/api/v1/rate-driver", {
+    const res = await fetch("https://bengaluru-raksha.onrender.com/api/v1/rate-driver", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -157,7 +157,7 @@ document.getElementById("searchform").addEventListener("submit", async function 
   }
 
   try {
-    const res = await fetch(`http://localhost:8000/api/v1/driver/${vehicleNumber}`);
+    const res = await fetch(`https://bengaluru-raksha.onrender.com/api/v1/driver/${vehicleNumber}`);
     const data = await res.json();
 
     if (res.ok) {
