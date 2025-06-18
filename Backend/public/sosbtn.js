@@ -28,7 +28,7 @@ function handleLocationError(error) {
 }
 
 function sendLocationToServer(latitude, longitude) {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("accessToken")
     fetch('https://bengaluru-raksha.onrender.com/api/v1/sos/send-sos', {
         method: 'POST',
         credentials: 'include', 
@@ -39,11 +39,6 @@ function sendLocationToServer(latitude, longitude) {
         body: JSON.stringify({ latitude, longitude })
     })
     .then(response => response.json())
-    .then(data => {
-    if (data?.data?.accessToken) {
-        localStorage.setItem("token", data.data.accessToken);
-      }
-})
     .then(handleServerSuccess)
     .catch(handleServerError);
 }
