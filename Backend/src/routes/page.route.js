@@ -10,10 +10,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 router.get('/login', (req, res) => {
+    console.log("Login file path:", path.join(__dirname, '../../public/login.html'));
     res.sendFile(path.join(__dirname, '../../public', 'login.html'));
 });
 
-router.get('/homepage', (req, res) => {
+router.get('/homepage', verifyJWT, (req, res) => {
     res.sendFile(path.join(__dirname, '../../public', 'homepage.html'));
 });
 
