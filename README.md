@@ -24,7 +24,7 @@ A web-based project for community safety and assistance in Bengaluru.
 
 | SOS Feature | Driver Review |
 |------------|---------------|
-| ![sos](./screenshots/sos.png) | ![review](./screenshots/review.png) |
+| ![WhatsApp Image 2025-06-19 at 13 23 22_e529a748](https://github.com/user-attachments/assets/1bcdb4b3-598e-4ea7-a899-58de8fae1c86) | ![Screenshot 2025-06-19 131645](https://github.com/user-attachments/assets/f3e3ac22-224d-4cad-8d11-9f5a6b8b2951)
 
 
 
