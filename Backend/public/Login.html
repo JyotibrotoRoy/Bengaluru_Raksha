@@ -5,15 +5,26 @@
   <link rel="stylesheet" href="style.css"></head>
 <body>
   <div class="container2">
-    <h2 class="rpt">Login</h2>
-    <form id="loginForm">
-      <h>Username or Email</h><br>
-      <input type="text" id="identifier" placeholder="Enter username or email" required><br>
-      <h>Password</h><br>
-      <input type="password" id="password" placeholder="Enter password" required><br>
-      <button type="submit" class="submit-btn">Login</button>
-    </form>
-  </div>
+  <h2 class="rpt">Login</h2>
+  <form id="loginForm">
+
+    <div class="form-group">
+      <label for="identifier">Username or Email</label><br>
+      <input type="text" id="identifier" placeholder="Enter username or email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label><br>
+      <input type="password" id="password" placeholder="Enter password" required>
+    </div>
+
+    <button type="submit" class="submit-btn">Login</button>
+    <p style="color: white; margin-top: 10px;">
+    New user? 
+    <a href="index.html" style="color: #ff4b4b; text-decoration: underline;">Register here</a>
+    </p>
+  </form>
+</div>
 
   <script>
     const form = document.getElementById("loginForm");

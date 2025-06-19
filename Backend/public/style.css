@@ -26,18 +26,26 @@ h{
     margin-right: 5%;
 }
 
-input[type="text"]
-input[type="password"]
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Consolas', monospace;
+}
+
+input[type="text"],
+input[type="password"],
 input[type="email"] {
-    width: 50%;
-    height: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #ffffff0a;
-    color: #ffffff;
-    border: 0px solid #000000;
-    border-radius: 10px;
-    font-family: 'Consolas', monospace;
+  width: 50%;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #ffffff0a;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Consolas', monospace;
 }
 
 .container1 {
