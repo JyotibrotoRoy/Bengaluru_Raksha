@@ -73,9 +73,13 @@ document.getElementById('overlay').addEventListener('click', function() {
 
 async function logout() {
   try {
+    const token = localStorage.getItem("accessToken")
     const res = await fetch("https://bengaluru-raksha.onrender.com/api/v1/users/logout", {
       method: "POST",
-      credentials: "include"  
+      credentials: "include",
+      headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
 
     const data = await res.json();
